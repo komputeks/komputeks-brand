@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Zap } from 'lucide-react';
-import { ThemeToggle } from './theme-toggle';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -32,18 +31,20 @@ export function Navbar() {
   }, [pathname]);
 
   return (
-    <header
+    <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'bg-white/80 shadow-sm backdrop-blur-xl dark:bg-zinc-950/80'
+          ? 'bg-surface-950/80 backdrop-blur-xl border-b border-white/10'
           : 'bg-transparent'
       )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight">
-          <Zap className="h-6 w-6 text-brand-500" />
-          <span className="text-zinc-900 dark:text-white">Komputeks</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500">
+            <Zap className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-xl font-bold font-display">Komputeks</span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -54,8 +55,8 @@ export function Navbar() {
               className={cn(
                 'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 pathname === href
-                  ? 'bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400'
-                  : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white'
+                  ? 'text-brand-400 bg-brand-500/10'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
               )}
             >
               {label}
@@ -64,27 +65,24 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
-            <ThemeToggle />
-          </div>
           <Link
             href="/login"
-            className="hidden rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-600 md:block"
+            className="hidden rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:from-brand-500 hover:to-brand-400 hover:shadow-lg hover:shadow-brand-500/25 md:inline-flex"
           >
             Sign In
           </Link>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 md:hidden"
+            className="rounded-lg p-2 text-white/60 hover:bg-white/5 hover:text-white md:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-      </nav>
+      </div>
 
       {open && (
-        <div className="border-t border-zinc-200 bg-white px-4 py-4 dark:border-zinc-800 dark:bg-zinc-950 md:hidden">
+        <div className="border-t border-white/10 bg-surface-950/95 px-6 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => (
               <Link
@@ -93,26 +91,23 @@ export function Navbar() {
                 className={cn(
                   'rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   pathname === href
-                    ? 'bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-400'
-                    : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800'
+                    ? 'text-brand-400 bg-brand-500/10'
+                    : 'text-white/60 hover:text-white hover:bg-white/5'
                 )}
               >
                 {label}
               </Link>
             ))}
-            <hr className="my-2 border-zinc-200 dark:border-zinc-800" />
+            <hr className="my-2 border-white/10" />
             <Link
               href="/login"
-              className="rounded-lg bg-brand-500 px-3 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-600"
+              className="rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-3 py-2.5 text-center text-sm font-semibold text-white"
             >
               Sign In
             </Link>
-            <div className="mt-2 flex justify-center">
-              <ThemeToggle />
-            </div>
           </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }

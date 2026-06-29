@@ -1,29 +1,37 @@
+import { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
 }
 
-export function Input({ label, error, className, id, ...props }: InputProps) {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
-  return (
-    <div className="space-y-1">
-      {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-          {label}
-        </label>
-      )}
-      <input
-        id={inputId}
-        className={cn(
-          'block w-full rounded-lg border bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-500',
-          error ? 'border-red-500' : 'border-zinc-300',
-          className
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, label, error, id, ...props }, ref) => {
+    const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
+    return (
+      <div className="space-y-2">
+        {label && (
+          <label htmlFor={inputId} className="text-sm font-medium text-white/80">
+            {label}
+          </label>
         )}
-        {...props}
-      />
-      {error && <p className="text-xs text-red-500">{error}</p>}
-    </div>
-  );
-}
+        <input
+          ref={ref}
+          id={inputId}
+          className={cn(
+            'w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl',
+            'focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20',
+            'transition-all duration-300 placeholder:text-white/40 text-white',
+            error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
+            className
+          )}
+          {...props}
+        />
+        {error && <p className="text-sm text-red-400">{error}</p>}
+      </div>
+    );
+  }
+);
+
+Input.displayName = 'Input';

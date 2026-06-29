@@ -20,10 +20,10 @@ export function ProductGrid({ products }: { products: Product[] }) {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
               active === cat
-                ? 'bg-brand-500 text-white'
-                : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700'
+                ? 'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-500/25'
+                : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/10 hover:text-white'
             }`}
           >
             {cat}
@@ -36,7 +36,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
         ))}
       </div>
       {filtered.length === 0 && (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">
+        <div className="py-12 text-center text-white/50">
           No products in this category yet.
         </div>
       )}

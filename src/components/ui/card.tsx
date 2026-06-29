@@ -1,20 +1,43 @@
 import { cn } from '@/lib/utils';
 
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
 }
 
-export function Card({ children, className, hover = false }: CardProps) {
+export function Card({ className, hover = false, children, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900',
-        hover && 'transition-shadow hover:shadow-lg hover:shadow-brand-500/5',
+        'bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl',
+        hover && 'hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]',
         className
       )}
+      {...props}
     >
+      {children}
+    </div>
+  );
+}
+
+export function CardHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn('p-6 border-b border-white/10', className)} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function CardContent({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn('p-6', className)} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn('p-6 border-t border-white/10', className)} {...props}>
       {children}
     </div>
   );

@@ -53,9 +53,9 @@ export function ContactForm() {
   if (success) {
     return (
       <div className="flex flex-col items-center gap-3 py-8 text-center">
-        <CheckCircle className="h-12 w-12 text-green-500" />
-        <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">Message Sent!</h3>
-        <p className="text-zinc-600 dark:text-zinc-400">We&apos;ll get back to you as soon as possible.</p>
+        <CheckCircle className="h-12 w-12 text-green-400" />
+        <h3 className="text-xl font-semibold font-display">Message Sent!</h3>
+        <p className="text-white/60">We&apos;ll get back to you as soon as possible.</p>
         <Button variant="secondary" onClick={() => setSuccess(false)}>Send another</Button>
       </div>
     );
@@ -68,17 +68,17 @@ export function ContactForm() {
         <Input label="Email" type="email" value={form.email} onChange={(e) => handleChange('email', e.target.value)} error={errors.email} placeholder="you@example.com" />
       </div>
       <Input label="Subject" value={form.subject} onChange={(e) => handleChange('subject', e.target.value)} error={errors.subject} placeholder="What's this about?" />
-      <div className="space-y-1">
-        <label htmlFor="message" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Message</label>
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-sm font-medium text-white/80">Message</label>
         <textarea
           id="message"
           rows={5}
           value={form.message}
           onChange={(e) => handleChange('message', e.target.value)}
           placeholder="Tell us more..."
-          className="block w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-white dark:placeholder-zinc-500"
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 transition-all duration-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
         />
-        {errors.message && <p className="text-xs text-red-500">{errors.message}</p>}
+        {errors.message && <p className="text-sm text-red-400">{errors.message}</p>}
       </div>
       <Button type="submit" loading={loading} size="lg" className="w-full sm:w-auto">
         <Send className="mr-2 h-4 w-4" />

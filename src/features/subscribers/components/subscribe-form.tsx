@@ -44,7 +44,7 @@ export function SubscribeForm({ source = 'landing' }: { source?: string }) {
 
   if (success) {
     return (
-      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+      <div className="flex items-center gap-2 text-green-400">
         <CheckCircle className="h-5 w-5" />
         <span className="font-medium">You&apos;re in! We&apos;ll keep you posted.</span>
       </div>

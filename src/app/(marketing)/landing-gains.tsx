@@ -8,25 +8,23 @@ const gains = [
 
 export function LandingGains() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-          What You Gain
-        </h2>
-        <p className="mt-3 text-zinc-600 dark:text-zinc-400">
+        <h2 className="text-3xl font-bold font-display">What You Gain</h2>
+        <p className="mt-3 text-white/60">
           They charge you for these, but we give you FREE.
         </p>
       </div>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gains.map((gain) => (
-          <div key={gain.title} className="rounded-xl border border-zinc-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
-            <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{gain.title}</h3>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{gain.description}</p>
+          <div key={gain.title} className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]">
+            <h3 className="text-lg font-semibold font-display">{gain.title}</h3>
+            <p className="mt-2 text-sm text-white/60">{gain.description}</p>
           </div>
         ))}
       </div>
-      <div className="mt-12 rounded-xl border border-brand-200 bg-brand-50 p-8 text-center dark:border-brand-800 dark:bg-brand-950/30">
-        <p className="text-lg font-medium text-zinc-900 dark:text-white">
+      <div className="mt-12 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center backdrop-blur-xl">
+        <p className="text-lg font-medium font-display">
           Take assured actions today with what you have. The momentum will follow.
         </p>
       </div>

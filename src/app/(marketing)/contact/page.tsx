@@ -9,37 +9,40 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-28 pb-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-white">
-              Get In Touch
-            </h1>
-            <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-              Have a question, idea, or just want to connect? We read every message.
-            </p>
-            <div className="mt-8 space-y-4">
-              <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
-                <Mail className="h-5 w-5 text-brand-500" />
-                <span>xpatworld2021@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
-                <MapPin className="h-5 w-5 text-brand-500" />
-                <span>Nairobi, Kenya</span>
-              </div>
-              <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
-                <Github className="h-5 w-5 text-brand-500" />
-                <a href="https://github.com/komputeks" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 dark:hover:text-brand-400">github.com/komputeks</a>
-              </div>
-              <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
-                <Twitter className="h-5 w-5 text-brand-500" />
-                <a href="https://twitter.com/komputeks" target="_blank" rel="noopener noreferrer" className="hover:text-brand-600 dark:hover:text-brand-400">@komputeks</a>
+    <div className="relative min-h-screen overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-surface-950 to-surface-950" />
+      <div className="relative z-10 pt-28 pb-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div>
+              <h1 className="text-4xl font-bold font-display sm:text-5xl">
+                <span className="gradient-text">Get In Touch</span>
+              </h1>
+              <p className="mt-4 text-lg text-white/60">
+                Have a question, idea, or just want to connect? We read every message.
+              </p>
+              <div className="mt-8 space-y-4">
+                <div className="flex items-center gap-3 text-white/60">
+                  <Mail className="h-5 w-5 text-brand-400" />
+                  <span>xpatworld2021@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-white/60">
+                  <MapPin className="h-5 w-5 text-brand-400" />
+                  <span>Nairobi, Kenya</span>
+                </div>
+                <div className="flex items-center gap-3 text-white/60">
+                  <Github className="h-5 w-5 text-brand-400" />
+                  <a href="https://github.com/komputeks" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400">github.com/komputeks</a>
+                </div>
+                <div className="flex items-center gap-3 text-white/60">
+                  <Twitter className="h-5 w-5 text-brand-400" />
+                  <a href="https://twitter.com/komputeks" target="_blank" rel="noopener noreferrer" className="hover:text-brand-400">@komputeks</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="rounded-xl border border-zinc-200 bg-white p-6 sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
-            <ContactForm />
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
