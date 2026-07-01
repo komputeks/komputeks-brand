@@ -19,18 +19,18 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   return (
     <div className="pt-24 pb-20">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
           <aside className="space-y-1">
-            <div className="mb-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
-              <p className="font-semibold font-display">{user.email}</p>
-              <p className="text-xs text-white/50">{isAdmin ? 'Admin' : 'User'}</p>
+            <div className="mb-4 glass-card p-4">
+              <p className="font-semibold text-white">{user.email}</p>
+              <p className="text-xs text-white/40">{isAdmin ? 'Admin' : 'User'}</p>
             </div>
-            <Link href="/dashboard" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-white/60 transition-colors hover:bg-white/5 hover:text-white">
+            <Link href="/dashboard" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-colors">
               <User className="h-4 w-4" /> Profile
             </Link>
             {isAdmin && (
-              <Link href="/admin" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-white/60 transition-colors hover:bg-white/5 hover:text-white">
+              <Link href="/admin" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-colors">
                 <Shield className="h-4 w-4" /> Admin Panel
               </Link>
             )}

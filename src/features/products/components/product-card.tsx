@@ -42,14 +42,14 @@ export function ProductCard({ product }: { product: Product }) {
     <Card hover className="flex flex-col justify-between p-6">
       <div>
         <div className="mb-4 flex items-start justify-between">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500 shadow-lg shadow-brand-500/20">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-400">
             <Icon className="h-5 w-5 text-white" />
           </div>
           <Badge variant={status.variant}>{status.label}</Badge>
         </div>
-        <h3 className="text-lg font-semibold font-display">{product.name}</h3>
+        <h3 className="text-lg font-semibold text-white font-[family-name:var(--font-display)]">{product.name}</h3>
         <p className="mt-1 text-sm text-brand-400">{product.tagline}</p>
-        <p className="mt-3 text-sm text-white/60">{product.description}</p>
+        <p className="mt-3 text-sm text-white/50">{product.description}</p>
       </div>
       {product.url && (
         <a

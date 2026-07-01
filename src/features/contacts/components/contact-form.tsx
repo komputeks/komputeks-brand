@@ -54,8 +54,8 @@ export function ContactForm() {
     return (
       <div className="flex flex-col items-center gap-3 py-8 text-center">
         <CheckCircle className="h-12 w-12 text-green-400" />
-        <h3 className="text-xl font-semibold font-display">Message Sent!</h3>
-        <p className="text-white/60">We&apos;ll get back to you as soon as possible.</p>
+        <h3 className="text-xl font-semibold text-white">Message Sent!</h3>
+        <p className="text-white/50">We&apos;ll get back to you as soon as possible.</p>
         <Button variant="secondary" onClick={() => setSuccess(false)}>Send another</Button>
       </div>
     );
@@ -76,7 +76,7 @@ export function ContactForm() {
           value={form.message}
           onChange={(e) => handleChange('message', e.target.value)}
           placeholder="Tell us more..."
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/40 transition-all duration-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40 text-white"
         />
         {errors.message && <p className="text-sm text-red-400">{errors.message}</p>}
       </div>

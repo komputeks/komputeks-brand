@@ -4,8 +4,8 @@
   "description": "For People Building Anyway — the world's most trusted ecosystem for creators with limited resources.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#09090b",
-  "theme_color": "#f59e0b",
+  "background_color": "#020617",
+  "theme_color": "#6366f1",
   "orientation": "portrait-primary",
   "icons": [
     {

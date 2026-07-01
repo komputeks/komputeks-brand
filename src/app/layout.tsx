@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { ThemeProvider } from '@/components/shared/theme-provider';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
 import './globals.css';
@@ -48,19 +49,13 @@ const jsonLd = {
   logo: 'https://komputeks-brand.vercel.app/favicon.svg',
   description: 'The world\'s most trusted ecosystem for people building with limited resources.',
   foundingDate: '2015',
-  founder: {
-    '@type': 'Person',
-    name: 'Simon Peter Muchoki Wokabi',
-  },
-  sameAs: [
-    'https://github.com/komputeks',
-    'https://twitter.com/komputeks',
-  ],
+  founder: { '@type': 'Person', name: 'Simon Peter Muchoki Wokabi' },
+  sameAs: ['https://github.com/komputeks', 'https://twitter.com/komputeks'],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
@@ -72,9 +67,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})});}` }} />
       </head>
       <body className="min-h-screen bg-surface-950 text-white antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

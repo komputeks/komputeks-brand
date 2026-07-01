@@ -3,7 +3,7 @@ export function Skeleton({ className }: { className?: string }) {
     <div
       className={`animate-pulse rounded-xl bg-white/5 ${className || ''}`}
     />
-  );
+  )
 }
 
 export function CardSkeleton() {
@@ -14,7 +14,7 @@ export function CardSkeleton() {
       <Skeleton className="mb-2 h-3 w-5/6" />
       <Skeleton className="h-3 w-1/2" />
     </div>
-  );
+  )
 }
 
 export function GridSkeleton({ count = 6 }: { count?: number }) {
@@ -24,5 +24,5 @@ export function GridSkeleton({ count = 6 }: { count?: number }) {
         <CardSkeleton key={i} />
       ))}
     </div>
-  );
+  )
 }
