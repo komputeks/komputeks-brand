@@ -3,15 +3,16 @@ import { Sparkles, Github, Twitter, Mail } from 'lucide-react';
 
 const footerLinks = {
   Product: [
-    { href: '/products', label: 'All Products' },
+    { href: '/products', label: 'Projects' },
+    { href: '/services', label: 'Services' },
+    { href: '/blog', label: 'Blog' },
     { href: '/docs', label: 'Documentation' },
-    { href: '/faq', label: 'FAQ' },
-    { href: '/contact', label: 'Contact' },
   ],
   Company: [
     { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/faq', label: 'FAQ' },
     { href: '/docs/changelog', label: 'Changelog' },
-    { href: '/docs/roadmap', label: 'Roadmap' },
   ],
   Legal: [
     { href: '/privacy', label: 'Privacy Policy' },

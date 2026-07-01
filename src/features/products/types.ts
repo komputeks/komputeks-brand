@@ -13,6 +13,33 @@ export interface Product {
   updated_at: string;
 }
 
+export interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  tags: string | null;
+  icon_letter: string | null;
+  cover_image: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  published: boolean;
+  author_id: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Testimonial {
   id: string;
   name: string;
@@ -50,18 +77,6 @@ export interface Contact {
   created_at: string;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  published: boolean;
-  author_id: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
 export interface UserProfile {
   id: string;
   email: string;
@@ -70,4 +85,44 @@ export interface UserProfile {
   role: 'admin' | 'user';
   created_at: string;
   updated_at: string;
+}
+
+export const PRODUCT_CATEGORIES: Record<string, string> = {
+  'Data': 'data',
+  'Storage': 'storage',
+  'Commerce': 'commerce',
+  'Developer Tools': 'developer-tools',
+  'AI & Automation': 'ai',
+  'Communication': 'communication',
+  'Information': 'information',
+  'Media': 'media',
+  'Productivity': 'productivity',
+  'Infrastructure': 'infrastructure',
+  'Content': 'content',
+};
+
+export const SERVICE_CATEGORIES: Record<string, string> = {
+  'Technology': 'technology',
+  'Commerce': 'commerce',
+  'Operations': 'operations',
+  'Marketing': 'marketing',
+  'Education': 'education',
+};
+
+export const BLOG_CATEGORIES: Record<string, string> = {
+  'Philosophy': 'philosophy',
+  'Building': 'building',
+  'Technology': 'technology',
+  'Founder Story': 'founder-story',
+};
+
+export function getCategorySlug(map: Record<string, string>, category: string): string {
+  return map[category] || category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
+export function getCategoryFromSlug(map: Record<string, string>, slug: string): string | null {
+  for (const [name, s] of Object.entries(map)) {
+    if (s === slug) return name;
+  }
+  return null;
 }
