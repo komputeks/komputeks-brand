@@ -3,33 +3,31 @@ import { ArrowRight } from 'lucide-react';
 
 export function LandingHero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-50/50 to-transparent dark:from-brand-950/20 dark:to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-200/20 via-transparent to-transparent dark:from-brand-900/10" />
+    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-44 sm:pb-32">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/20 via-surface-950 to-surface-950" />
+      <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-brand-500/20 blur-[64px] animate-pulse-glow" />
+      <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-cyan-500/20 blur-[64px] animate-pulse-glow" />
+      <div className="absolute inset-0 grid-bg" />
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="animate-fade-in mb-4 text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Technology is not the product. Business performance is.</p>
-          <p className="animate-fade-in mb-2 text-sm font-medium text-zinc-500 dark:text-zinc-400">Since 2015 · Building for reality</p>
-          <h1 className="animate-fade-in-delay-1 text-4xl font-bold tracking-tight text-zinc-900 sm:text-6xl lg:text-7xl dark:text-white">
-            For People{' '}
-            <span className="bg-gradient-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent dark:from-brand-400 dark:to-brand-500">
-              Building Anyway
-            </span>
+          <div className="animate-fade-in mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/60 backdrop-blur-sm">
+            Since 2015 · Building for reality
+          </div>
+          <h1 className="animate-fade-in-delay-1 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl font-[family-name:var(--font-display)] leading-tight">
+            <span className="gradient-text">For People</span>
+            <br />
+            <span className="text-white">Building Anyway</span>
           </h1>
-          <p className="animate-fade-in-delay-2 mt-6 text-lg text-zinc-600 sm:text-xl dark:text-zinc-400">
+          <p className="animate-fade-in-delay-2 mt-6 text-base text-white/60 sm:text-lg max-w-2xl mx-auto">
             Komputeks is a leverage company. We build systems that help people with more determination than resources create better futures for themselves.
           </p>
           <div className="animate-fade-in-delay-3 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-            >
-              Explore Projects <ArrowRight className="h-4 w-4" />
+            <Link href="/products" className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-brand-500/25 transition-all duration-300 hover:from-brand-500 hover:to-brand-400 hover:shadow-brand-500/40 hover:scale-[1.02] active:scale-[0.98]">
+              Explore Projects <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-6 py-3 text-base font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
-            >
+            <Link href="/about" className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10 hover:border-white/20">
               Our Story
             </Link>
           </div>

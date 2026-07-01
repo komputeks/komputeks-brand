@@ -32,3 +32,5 @@ npm-debug.log*
 # Misc
 .vite-source-tags.js
 prompts/
+erenexa-ref/
+prompts/
