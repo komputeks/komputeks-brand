@@ -1,23 +1,10 @@
 import Link from 'next/link';
-import { Sparkles, Github, Twitter, Mail } from 'lucide-react';
+import { Zap, Github, Twitter, Mail } from 'lucide-react';
 
 const footerLinks = {
-  Product: [
-    { href: '/products', label: 'Projects' },
-    { href: '/services', label: 'Services' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/docs', label: 'Documentation' },
-  ],
-  Company: [
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
-    { href: '/faq', label: 'FAQ' },
-    { href: '/docs/changelog', label: 'Changelog' },
-  ],
-  Legal: [
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
-  ],
+  Product: [{ href: '/products', label: 'All Products' }, { href: '/docs', label: 'Documentation' }, { href: '/faq', label: 'FAQ' }, { href: '/contact', label: 'Contact' }],
+  Company: [{ href: '/about', label: 'About' }, { href: '/docs/changelog', label: 'Changelog' }, { href: '/docs/roadmap', label: 'Roadmap' }],
+  Legal: [{ href: '/privacy', label: 'Privacy Policy' }, { href: '/terms', label: 'Terms of Service' }],
 };
 
 const socialLinks = [
@@ -28,58 +15,34 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-surface-950">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="border-t border-white/10 bg-surface-950">
+      <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-cyan-500">
-                <Sparkles className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center">
+                <Zap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white font-[family-name:var(--font-display)]">Komputeks</span>
+              <span className="text-xl font-bold font-display">Komputeks</span>
             </Link>
-            <p className="mt-3 max-w-sm text-sm text-white/50">
-              For people building anyway. The world&apos;s most trusted ecosystem for creators with more determination than resources.
-            </p>
+            <p className="mt-3 max-w-sm text-sm text-white/60">For people building anyway. The world&apos;s most trusted ecosystem for creators with more determination than resources.</p>
             <div className="mt-4 flex gap-3">
               {socialLinks.map(({ href, icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg p-2 text-white/40 transition-colors hover:bg-white/5 hover:text-white"
-                  aria-label={label}
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors" aria-label={label}><Icon className="h-5 w-5 text-white/70" /></a>
               ))}
             </div>
           </div>
-
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-white">{title}</h3>
+              <h3 className="text-sm font-semibold text-white font-display">{title}</h3>
               <ul className="mt-3 space-y-2">
-                {links.map(({ href, label }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      className="text-sm text-white/50 transition-colors hover:text-brand-400"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
+                {links.map(({ href, label }) => (<li key={label}><Link href={href} className="text-sm text-white/60 hover:text-brand-400 transition-colors">{label}</Link></li>))}
               </ul>
             </div>
           ))}
         </div>
-
-        <div className="mt-10 border-t border-white/5 pt-6">
-          <p className="text-center text-sm text-white/30">
-            © {new Date().getFullYear()} Komputeks. For people building anyway.
-          </p>
+        <div className="mt-10 border-t border-white/10 pt-6">
+          <p className="text-center text-sm text-white/40">© {new Date().getFullYear()} Komputeks. For people building anyway.</p>
         </div>
       </div>
     </footer>
