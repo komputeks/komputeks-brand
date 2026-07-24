@@ -1,30 +1,16 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
-import type { Product } from '../types';
 import { ExternalLink, HardDrive, Cloud, MessageSquare, FileSpreadsheet, Shield, Lightbulb, Code, Search, Mail, Calendar, ShoppingBag, Newspaper, Briefcase, Bot, Globe, Database, Video, Image, Smartphone } from 'lucide-react';
+import type { Product } from '../types';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  'hard-drive': HardDrive,
-  'cloud': Cloud,
-  'message-square': MessageSquare,
-  'file-spreadsheet': FileSpreadsheet,
-  'shield': Shield,
-  'lightbulb': Lightbulb,
-  'code': Code,
-  'search': Search,
-  'mail': Mail,
-  'calendar': Calendar,
-  'shopping-bag': ShoppingBag,
-  'newspaper': Newspaper,
-  'briefcase': Briefcase,
-  'bot': Bot,
-  'globe': Globe,
-  'database': Database,
-  'video': Video,
-  'image': Image,
-  'smartphone': Smartphone,
+  'hard-drive': HardDrive, 'cloud': Cloud, 'message-square': MessageSquare,
+  'file-spreadsheet': FileSpreadsheet, 'shield': Shield, 'lightbulb': Lightbulb,
+  'code': Code, 'search': Search, 'mail': Mail, 'calendar': Calendar,
+  'shopping-bag': ShoppingBag, 'newspaper': Newspaper, 'briefcase': Briefcase,
+  'bot': Bot, 'globe': Globe, 'database': Database, 'video': Video,
+  'image': Image, 'smartphone': Smartphone,
 };
 
 const statusConfig = {
@@ -39,11 +25,11 @@ export function ProductCard({ product }: { product: Product }) {
   const status = statusConfig[product.status];
 
   return (
-    <Card hover className="flex flex-col justify-between">
+    <div className="glass-card p-6 flex flex-col justify-between hover:bg-white/10 transition-all duration-300">
       <div>
         <div className="mb-4 flex items-start justify-between">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 border border-brand-500/20">
-            <Icon className="h-5 w-5 text-brand-400" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500">
+            <Icon className="h-5 w-5 text-white" />
           </div>
           <Badge variant={status.variant}>{status.label}</Badge>
         </div>
@@ -56,11 +42,11 @@ export function ProductCard({ product }: { product: Product }) {
           href={product.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-400 transition-all duration-300 hover:text-brand-300"
+          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand-400 transition-colors hover:text-brand-300"
         >
           Visit <ExternalLink className="h-3.5 w-3.5" />
         </a>
       )}
-    </Card>
+    </div>
   );
 }

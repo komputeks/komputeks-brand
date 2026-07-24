@@ -20,25 +20,13 @@ export function Card({ className, hover = false, children, ...props }: CardProps
 }
 
 export function CardHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn('p-6 border-b border-white/10', className)} {...props}>
-      {children}
-    </div>
-  );
+  return <div className={cn('p-6 border-b border-white/10', className)} {...props}>{children}</div>;
 }
 
 export function CardContent({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn('p-6', className)} {...props}>
-      {children}
-    </div>
-  );
+  return <div className={cn('p-6', className)} {...props}>{children}</div>;
 }
 
 export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn('p-6 border-t border-white/10', className)} {...props}>
-      {children}
-    </div>
-  );
+  return <div className={cn('p-6 border-t border-white/10', className)} {...props}>{children}</div>;
 }

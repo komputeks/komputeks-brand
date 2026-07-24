@@ -16,10 +16,7 @@ export function SubscribeForm({ source = 'landing' }: { source?: string }) {
     e.preventDefault();
     setError('');
     const result = subscribeSchema.safeParse({ email, source });
-    if (!result.success) {
-      setError(result.error.errors[0].message);
-      return;
-    }
+    if (!result.success) { setError(result.error.errors[0].message); return; }
     setLoading(true);
     try {
       const res = await fetch('/api/subscribers', {
@@ -27,17 +24,10 @@ export function SubscribeForm({ source = 'landing' }: { source?: string }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source }),
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Failed to subscribe');
-      }
-      setSuccess(true);
-      setEmail('');
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
-    } finally {
-      setLoading(false);
-    }
+      if (!res.ok) { const data = await res.json(); throw new Error(data.error || 'Failed to subscribe'); }
+      setSuccess(true); setEmail('');
+    } catch (err) { setError(err instanceof Error ? err.message : 'Something went wrong'); }
+    finally { setLoading(false); }
   };
 
   if (success) {
@@ -52,17 +42,10 @@ export function SubscribeForm({ source = 'landing' }: { source?: string }) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
       <div className="flex-1">
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          error={error}
-        />
+        <Input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} error={error} />
       </div>
       <Button type="submit" loading={loading} size="lg">
-        <Mail className="mr-2 h-4 w-4" />
-        Subscribe
+        <Mail className="mr-2 h-4 w-4" /> Subscribe
       </Button>
     </form>
   );

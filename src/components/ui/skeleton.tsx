@@ -1,7 +1,5 @@
 export function Skeleton({ className }: { className?: string }) {
-  return (
-    <div className={`animate-pulse rounded-xl bg-white/10 ${className || ''}`} />
-  );
+  return <div className={`animate-pulse rounded-xl bg-white/10 ${className || ''}`} />;
 }
 
 export function CardSkeleton() {
@@ -18,9 +16,7 @@ export function CardSkeleton() {
 export function GridSkeleton({ count = 6 }: { count?: number }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: count }).map((_, i) => (
-        <CardSkeleton key={i} />
-      ))}
+      {Array.from({ length: count }).map((_, i) => <CardSkeleton key={i} />)}
     </div>
   );
 }

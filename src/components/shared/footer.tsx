@@ -33,7 +33,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
+                <Zap className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold font-display">Komputeks</span>
             </Link>
@@ -47,7 +47,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2 text-white/50 transition-all duration-300 hover:bg-white/5 hover:text-white"
+                  className="rounded-lg p-2 text-white/50 transition-all duration-300 hover:bg-white/5 hover:text-brand-400"
                   aria-label={label}
                 >
                   <Icon className="h-5 w-5" />
@@ -58,13 +58,13 @@ export function Footer() {
 
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-white mb-3">{title}</h3>
-              <ul className="space-y-2">
+              <h3 className="text-sm font-semibold text-white/80">{title}</h3>
+              <ul className="mt-3 space-y-2">
                 {links.map(({ href, label }) => (
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-sm text-white/60 transition-all duration-300 hover:text-brand-400"
+                      className="text-sm text-white/50 transition-colors hover:text-brand-400"
                     >
                       {label}
                     </Link>

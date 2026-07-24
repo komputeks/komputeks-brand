@@ -3,16 +3,13 @@
 import { useState } from 'react';
 import { ProductCard } from './product-card';
 import type { Product } from '../types';
-import { cn } from '@/lib/utils';
 
 const categories = ['All', 'Storage', 'Commerce', 'Developer Tools', 'AI & Automation', 'Communication', 'Finance', 'Information', 'Social', 'Media'];
 
 export function ProductGrid({ products }: { products: Product[] }) {
   const [active, setActive] = useState('All');
 
-  const filtered = active === 'All'
-    ? products
-    : products.filter((p) => p.category === active);
+  const filtered = active === 'All' ? products : products.filter((p) => p.category === active);
 
   return (
     <div>
@@ -21,26 +18,21 @@ export function ProductGrid({ products }: { products: Product[] }) {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={cn(
-              'rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300',
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 ${
               active === cat
                 ? 'bg-brand-500/20 text-brand-400 border border-brand-500/30'
-                : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20'
-            )}
+                : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/10 hover:text-white'
+            }`}
           >
             {cat}
           </button>
         ))}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {filtered.map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
       {filtered.length === 0 && (
-        <div className="py-12 text-center text-white/40">
-          No products in this category yet.
-        </div>
+        <div className="py-12 text-center text-white/40">No products in this category yet.</div>
       )}
     </div>
   );

@@ -22,31 +22,18 @@ export function ContactForm() {
     const result = contactSchema.safeParse(form);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => {
-        const field = err.path[0] as string;
-        fieldErrors[field] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
+      result.error.errors.forEach((err) => { fieldErrors[err.path[0] as string] = err.message; });
+      setErrors(fieldErrors); return;
     }
     setLoading(true);
     try {
       const res = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form),
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Failed to send message');
-      }
-      setSuccess(true);
-      setForm({ name: '', email: '', subject: '', message: '' });
-    } catch (err) {
-      setErrors({ message: err instanceof Error ? err.message : 'Something went wrong' });
-    } finally {
-      setLoading(false);
-    }
+      if (!res.ok) { const data = await res.json(); throw new Error(data.error || 'Failed to send message'); }
+      setSuccess(true); setForm({ name: '', email: '', subject: '', message: '' });
+    } catch (err) { setErrors({ message: err instanceof Error ? err.message : 'Something went wrong' }); }
+    finally { setLoading(false); }
   };
 
   if (success) {
@@ -70,18 +57,14 @@ export function ContactForm() {
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-white/80">Message</label>
         <textarea
-          id="message"
-          rows={5}
-          value={form.message}
-          onChange={(e) => handleChange('message', e.target.value)}
+          id="message" rows={5} value={form.message} onChange={(e) => handleChange('message', e.target.value)}
           placeholder="Tell us more..."
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40"
+          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40 text-white"
         />
         {errors.message && <p className="text-sm text-red-400">{errors.message}</p>}
       </div>
       <Button type="submit" loading={loading} size="lg" className="w-full sm:w-auto">
-        <Send className="mr-2 h-4 w-4" />
-        Send Message
+        <Send className="mr-2 h-4 w-4" /> Send Message
       </Button>
     </form>
   );

@@ -8,14 +8,10 @@ const gains = [
 
 export function LandingGains() {
   return (
-    <section className="relative z-10 mx-auto max-w-7xl px-6 py-20">
+    <section className="mx-auto max-w-7xl px-6 py-20">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold font-display tracking-tight">
-          What You Gain
-        </h2>
-        <p className="mt-3 text-white/60">
-          They charge you for these, but we give you FREE.
-        </p>
+        <h2 className="text-3xl font-bold font-display">What You Gain</h2>
+        <p className="mt-3 text-white/60">They charge you for these, but we give you FREE.</p>
       </div>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gains.map((gain) => (
@@ -25,7 +21,7 @@ export function LandingGains() {
           </div>
         ))}
       </div>
-      <div className="mt-12 glass-card p-8 text-center border-brand-500/20">
+      <div className="mt-12 rounded-2xl border border-brand-500/20 bg-brand-500/10 p-8 text-center">
         <p className="text-lg font-medium gradient-text">
           Take assured actions today with what you have. The momentum will follow.
         </p>
