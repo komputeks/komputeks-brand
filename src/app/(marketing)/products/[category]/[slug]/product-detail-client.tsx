@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, Rocket } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { DeployWizard } from '@/components/deploy/deploy-wizard';
 import type { Product } from '@/features/products/types';
 import { PRODUCT_CATEGORIES, getCategorySlug } from '@/features/products/types';
 
@@ -17,9 +19,11 @@ export function ProductDetailClient({ product, categorySlug, prev, next, related
   product: Product; categorySlug: string; prev: Product | null; next: Product | null; related: Product[];
 }) {
   const status = statusConfig[product.status];
+  const [showDeploy, setShowDeploy] = useState(false);
 
   return (
     <div className="pt-28 pb-20">
+      {showDeploy && <DeployWizard product={product} onClose={() => setShowDeploy(false)} />}
       <article className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="mb-8">
           <Link href="/products" className="text-sm text-zinc-500 hover:text-brand-600 dark:hover:text-brand-400">← Back to Projects</Link>
@@ -38,12 +42,22 @@ export function ProductDetailClient({ product, categorySlug, prev, next, related
 
         <div className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{product.description}</p>
-          {product.url && (
-            <a href={product.url} target="_blank" rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-600">
-              Visit Project <ExternalLink className="h-4 w-4" />
-            </a>
-          )}
+          <div className="mt-6 flex flex-wrap gap-3">
+            {/* Deploy in Minutes — primary CTA */}
+            <button
+              onClick={() => setShowDeploy(true)}
+              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:from-brand-400 hover:to-cyan-400 shadow-lg shadow-brand-500/20"
+            >
+              <Rocket className="h-4 w-4" /> Deploy in Minutes
+            </button>
+            {/* Visit live project — secondary */}
+            {product.url && (
+              <a href={product.url} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-5 py-2.5 text-sm font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700">
+                Visit Project <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="mt-12 flex items-center justify-between border-t border-zinc-200 pt-6 dark:border-zinc-800">
