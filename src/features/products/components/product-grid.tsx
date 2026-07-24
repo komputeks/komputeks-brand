@@ -8,7 +8,6 @@ const categories = ['All', 'Storage', 'Commerce', 'Developer Tools', 'AI & Autom
 
 export function ProductGrid({ products }: { products: Product[] }) {
   const [active, setActive] = useState('All');
-
   const filtered = active === 'All' ? products : products.filter((p) => p.category === active);
 
   return (
@@ -29,7 +28,9 @@ export function ProductGrid({ products }: { products: Product[] }) {
         ))}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((product) => <ProductCard key={product.id} product={product} />)}
+        {filtered.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
       {filtered.length === 0 && (
         <div className="py-12 text-center text-white/40">No products in this category yet.</div>

@@ -32,15 +32,14 @@ export function ContactForm() {
       });
       if (!res.ok) { const data = await res.json(); throw new Error(data.error || 'Failed to send message'); }
       setSuccess(true); setForm({ name: '', email: '', subject: '', message: '' });
-    } catch (err) { setErrors({ message: err instanceof Error ? err.message : 'Something went wrong' }); }
-    finally { setLoading(false); }
+    } catch (err) { setErrors({ message: err instanceof Error ? err.message : 'Something went wrong' }); } finally { setLoading(false); }
   };
 
   if (success) {
     return (
       <div className="flex flex-col items-center gap-3 py-8 text-center">
         <CheckCircle className="h-12 w-12 text-green-400" />
-        <h3 className="text-xl font-semibold font-display">Message Sent!</h3>
+        <h3 className="font-display text-xl font-semibold text-white">Message Sent!</h3>
         <p className="text-white/60">We&apos;ll get back to you as soon as possible.</p>
         <Button variant="secondary" onClick={() => setSuccess(false)}>Send another</Button>
       </div>
@@ -57,9 +56,10 @@ export function ContactForm() {
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-white/80">Message</label>
         <textarea
-          id="message" rows={5} value={form.message} onChange={(e) => handleChange('message', e.target.value)}
+          id="message" rows={5} value={form.message}
+          onChange={(e) => handleChange('message', e.target.value)}
           placeholder="Tell us more..."
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40 text-white"
+          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40"
         />
         {errors.message && <p className="text-sm text-red-400">{errors.message}</p>}
       </div>

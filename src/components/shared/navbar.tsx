@@ -29,16 +29,18 @@ export function Navbar() {
   useEffect(() => { setOpen(false); }, [pathname]);
 
   return (
-    <header className={cn(
-      'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-      scrolled ? 'bg-surface-950/80 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
-    )}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500 flex items-center justify-center">
-            <Zap className="w-5 h-5 text-white" />
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        scrolled ? 'bg-surface-950/80 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
+      )}
+    >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-cyan-500">
+            <Zap className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xl font-bold font-display">Komputeks</span>
+          <span className="text-white">Komputeks</span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -47,10 +49,10 @@ export function Navbar() {
               key={href}
               href={href}
               className={cn(
-                'rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300',
+                'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 pathname === href
-                  ? 'text-brand-400 bg-brand-500/10'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                  ? 'bg-white/10 text-brand-400'
+                  : 'text-white/60 hover:bg-white/5 hover:text-white'
               )}
             >
               {label}
@@ -61,7 +63,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="hidden rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:from-brand-500 hover:to-brand-400 hover:shadow-lg hover:shadow-brand-500/25 hover:scale-[1.02] md:inline-flex"
+            className="hidden rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:from-brand-500 hover:to-brand-400 hover:shadow-lg hover:shadow-brand-500/25 hover:scale-[1.02] md:block"
           >
             Sign In
           </Link>
@@ -76,17 +78,17 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-surface-950/95 backdrop-blur-xl px-6 py-4 md:hidden">
+        <div className="border-t border-white/10 bg-surface-950/95 backdrop-blur-xl px-4 py-4 md:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
-                  'rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-300',
+                  'rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   pathname === href
-                    ? 'text-brand-400 bg-brand-500/10'
-                    : 'text-white/60 hover:text-white hover:bg-white/5'
+                    ? 'bg-white/10 text-brand-400'
+                    : 'text-white/60 hover:bg-white/5 hover:text-white'
                 )}
               >
                 {label}
@@ -95,7 +97,7 @@ export function Navbar() {
             <hr className="my-2 border-white/10" />
             <Link
               href="/login"
-              className="rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-3 py-2.5 text-center text-sm font-semibold text-white"
+              className="rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 px-3 py-2.5 text-center text-sm font-semibold text-white transition-all duration-300"
             >
               Sign In
             </Link>

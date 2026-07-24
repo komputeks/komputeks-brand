@@ -47,18 +47,15 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="theme-color" content="#020617" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <script dangerouslySetInnerHTML={{ __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})});}` }} />
       </head>
-      <body className="min-h-screen bg-surface-950">
+      <body className="min-h-screen bg-surface-950 text-white antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

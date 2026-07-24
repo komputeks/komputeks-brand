@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { GridSkeleton } from '@/components/ui/skeleton';
 import type { Product, Contact, Subscriber } from '@/features/products/types';
@@ -28,8 +29,7 @@ export function AdminDashboard() {
       if (pRes.ok) setProducts(await pRes.json());
       if (cRes.ok) setContacts(await cRes.json());
       if (sRes.ok) setSubscribers(await sRes.json());
-    } catch (err) { console.error('Failed to load admin data:', err); }
-    finally { setLoading(false); }
+    } catch (err) { console.error('Failed to load admin data:', err); } finally { setLoading(false); }
   };
 
   const handleCreateProduct = async (e: React.FormEvent) => {
@@ -42,13 +42,11 @@ export function AdminDashboard() {
 
   const handleDeleteProduct = async (id: string) => {
     if (!confirm('Delete this product?')) return;
-    try { const res = await fetch('/api/products', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }); if (res.ok) loadData(); }
-    catch (err) { console.error('Delete failed:', err); }
+    try { const res = await fetch('/api/products', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) }); if (res.ok) loadData(); } catch (err) { console.error('Delete failed:', err); }
   };
 
   const handleMarkRead = async (id: string, read: boolean) => {
-    try { await fetch('/api/contacts', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read }) }); loadData(); }
-    catch (err) { console.error('Update failed:', err); }
+    try { await fetch('/api/contacts', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, read }) }); loadData(); } catch (err) { console.error('Update failed:', err); }
   };
 
   const tabs: { key: Tab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
@@ -60,26 +58,24 @@ export function AdminDashboard() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold font-display">Admin Dashboard</h1>
+        <h1 className="font-display text-2xl font-bold text-white">Admin Dashboard</h1>
         {tab === 'products' && <Button size="sm" onClick={() => setShowForm(!showForm)}><Plus className="mr-1 h-4 w-4" /> Add Product</Button>}
       </div>
-
-      <div className="mt-6 flex gap-1 rounded-xl bg-white/5 p-1 border border-white/10">
+      <div className="mt-6 flex gap-2 flex-wrap">
         {tabs.map(({ key, label, icon: Icon }) => (
-          <button key={key} onClick={() => setTab(key)} className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-300 ${tab === key ? 'bg-white/10 text-white' : 'text-white/50 hover:text-white/80'}`}>
-            <Icon className="h-4 w-4" /> {label}
+          <button key={key} onClick={() => setTab(key)} className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${tab === key ? 'bg-brand-500/20 text-brand-400 border border-brand-500/30' : 'bg-white/5 text-white/60 hover:bg-white/10 border border-transparent'}`}>
+            <Icon className="inline mr-1.5 h-4 w-4" /> {label}
           </button>
         ))}
       </div>
-
       <div className="mt-6">
         {loading ? <GridSkeleton count={3} /> : (
           <>
             {tab === 'products' && (
               <div className="space-y-4">
                 {showForm && (
-                  <div className="glass-card p-6">
-                    <h3 className="mb-4 font-semibold font-display">New Product</h3>
+                  <Card className="p-6">
+                    <h3 className="mb-4 font-display font-semibold text-white">New Product</h3>
                     <form onSubmit={handleCreateProduct} className="grid gap-3 sm:grid-cols-2">
                       <Input label="Name" value={form.name} onChange={(e) => setForm(p => ({ ...p, name: e.target.value }))} required />
                       <Input label="Slug" value={form.slug} onChange={(e) => setForm(p => ({ ...p, slug: e.target.value }))} required />
@@ -87,14 +83,23 @@ export function AdminDashboard() {
                       <Input label="Category" value={form.category} onChange={(e) => setForm(p => ({ ...p, category: e.target.value }))} />
                       <Input label="URL" value={form.url} onChange={(e) => setForm(p => ({ ...p, url: e.target.value }))} placeholder="https://..." />
                       <Input label="Icon" value={form.icon} onChange={(e) => setForm(p => ({ ...p, icon: e.target.value }))} />
-                      <div className="sm:col-span-2"><label className="text-sm font-medium text-white/80">Description</label><textarea value={form.description} onChange={(e) => setForm(p => ({ ...p, description: e.target.value }))} required rows={3} className="mt-1 w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 text-white" /></div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-white/80">Description</label>
+                        <textarea value={form.description} onChange={(e) => setForm(p => ({ ...p, description: e.target.value }))} required rows={3} className="mt-1 w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300 placeholder:text-white/40" />
+                      </div>
                       <div className="sm:col-span-2 flex gap-2"><Button type="submit">Create</Button><Button type="button" variant="ghost" onClick={() => setShowForm(false)}>Cancel</Button></div>
                     </form>
-                  </div>
+                  </Card>
                 )}
                 {products.map((p) => (
-                  <div key={p.id} className="flex items-center justify-between glass-card p-4">
-                    <div><div className="flex items-center gap-2"><p className="font-medium font-display">{p.name}</p><Badge variant={p.status === 'working' ? 'success' : p.status === 'partly-working' ? 'warning' : 'default'}>{p.status}</Badge></div><p className="text-sm text-white/40">{p.tagline}</p></div>
+                  <div key={p.id} className="glass-card flex items-center justify-between p-4">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-white">{p.name}</p>
+                        <Badge variant={p.status === 'working' ? 'success' : p.status === 'partly-working' ? 'warning' : 'default'}>{p.status}</Badge>
+                      </div>
+                      <p className="text-sm text-white/40">{p.tagline}</p>
+                    </div>
                     <Button variant="ghost" size="sm" onClick={() => handleDeleteProduct(p.id)}><Trash2 className="h-4 w-4 text-red-400" /></Button>
                   </div>
                 ))}
@@ -105,11 +110,16 @@ export function AdminDashboard() {
                 {contacts.map((c) => (
                   <div key={c.id} className={`glass-card p-4 ${!c.read ? 'border-brand-500/30' : ''}`}>
                     <div className="flex items-start justify-between">
-                      <div><div className="flex items-center gap-2"><p className="font-medium">{c.name}</p>{!c.read && <Badge variant="warning">New</Badge>}</div><p className="text-xs text-white/40">{c.email}</p></div>
-                      <Button variant="ghost" size="sm" onClick={() => handleMarkRead(c.id, !c.read)}>{c.read ? <XCircle className="h-4 w-4 text-white/40" /> : <CheckCircle className="h-4 w-4 text-green-400" />}</Button>
+                      <div>
+                        <div className="flex items-center gap-2"><p className="font-medium text-white">{c.name}</p>{!c.read && <Badge variant="info">New</Badge>}</div>
+                        <p className="text-xs text-white/40">{c.email}</p>
+                      </div>
+                      <Button variant="ghost" size="sm" onClick={() => handleMarkRead(c.id, !c.read)}>
+                        {c.read ? <XCircle className="h-4 w-4 text-white/40" /> : <CheckCircle className="h-4 w-4 text-green-400" />}
+                      </Button>
                     </div>
-                    <p className="mt-1 text-sm font-medium text-white/80">{c.subject}</p>
-                    <p className="mt-1 text-sm text-white/60">{c.message}</p>
+                    <p className="mt-1 text-sm font-medium text-white/60">{c.subject}</p>
+                    <p className="mt-1 text-sm text-white/40">{c.message}</p>
                   </div>
                 ))}
                 {contacts.length === 0 && <p className="py-8 text-center text-white/40">No contacts yet.</p>}
@@ -118,8 +128,10 @@ export function AdminDashboard() {
             {tab === 'subscribers' && (
               <div className="space-y-2">
                 {subscribers.map((s) => (
-                  <div key={s.id} className="flex items-center gap-3 glass-card p-3">
-                    <Mail className="h-4 w-4 text-brand-400" /><span className="text-sm">{s.email}</span><span className="text-xs text-white/40">{s.source}</span>
+                  <div key={s.id} className="glass-card p-3 flex items-center gap-3">
+                    <Mail className="h-4 w-4 text-brand-400" />
+                    <span className="text-sm text-white">{s.email}</span>
+                    <span className="text-xs text-white/40">{s.source}</span>
                   </div>
                 ))}
                 {subscribers.length === 0 && <p className="py-8 text-center text-white/40">No subscribers yet.</p>}

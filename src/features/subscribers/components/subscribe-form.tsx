@@ -20,14 +20,12 @@ export function SubscribeForm({ source = 'landing' }: { source?: string }) {
     setLoading(true);
     try {
       const res = await fetch('/api/subscribers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source }),
       });
       if (!res.ok) { const data = await res.json(); throw new Error(data.error || 'Failed to subscribe'); }
       setSuccess(true); setEmail('');
-    } catch (err) { setError(err instanceof Error ? err.message : 'Something went wrong'); }
-    finally { setLoading(false); }
+    } catch (err) { setError(err instanceof Error ? err.message : 'Something went wrong'); } finally { setLoading(false); }
   };
 
   if (success) {

@@ -26,7 +26,9 @@
   --color-surface-950: #020617;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: var(--color-surface-950);
@@ -36,7 +38,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* { border-color: rgba(255, 255, 255, 0.1); }
+* {
+  border-color: rgba(255, 255, 255, 0.1);
+}
 
 .glass-card {
   background-color: rgba(255, 255, 255, 0.05);
@@ -57,13 +61,21 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in { animation: fade-in 0.7s ease-out forwards; }
-.animate-fade-in-delay-1 { animation: fade-in 0.7s ease-out 0.15s forwards; opacity: 0; }
-.animate-fade-in-delay-2 { animation: fade-in 0.7s ease-out 0.3s forwards; opacity: 0; }
-.animate-fade-in-delay-3 { animation: fade-in 0.7s ease-out 0.45s forwards; opacity: 0; }
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+.animate-fade-in {
+  animation: fade-in 0.7s ease-out forwards;
 }
-.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+.animate-fade-in-delay-1 {
+  animation: fade-in 0.7s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fade-in 0.7s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-3 {
+  animation: fade-in 0.7s ease-out 0.45s forwards;
+  opacity: 0;
+}

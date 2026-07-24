@@ -1,8 +1,9 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, HardDrive, Cloud, MessageSquare, FileSpreadsheet, Shield, Lightbulb, Code, Search, Mail, Calendar, ShoppingBag, Newspaper, Briefcase, Bot, Globe, Database, Video, Image, Smartphone } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 import type { Product } from '../types';
+import { ExternalLink, HardDrive, Cloud, MessageSquare, FileSpreadsheet, Shield, Lightbulb, Code, Search, Mail, Calendar, ShoppingBag, Newspaper, Briefcase, Bot, Globe, Database, Video, Image, Smartphone } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'hard-drive': HardDrive, 'cloud': Cloud, 'message-square': MessageSquare,
@@ -25,15 +26,15 @@ export function ProductCard({ product }: { product: Product }) {
   const status = statusConfig[product.status];
 
   return (
-    <div className="glass-card p-6 flex flex-col justify-between hover:bg-white/10 transition-all duration-300">
+    <Card hover className="flex flex-col justify-between p-6">
       <div>
         <div className="mb-4 flex items-start justify-between">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-500">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-400">
             <Icon className="h-5 w-5 text-white" />
           </div>
           <Badge variant={status.variant}>{status.label}</Badge>
         </div>
-        <h3 className="text-lg font-semibold font-display">{product.name}</h3>
+        <h3 className="font-display text-lg font-semibold text-white">{product.name}</h3>
         <p className="mt-1 text-sm text-brand-400">{product.tagline}</p>
         <p className="mt-3 text-sm text-white/60">{product.description}</p>
       </div>
@@ -47,6 +48,6 @@ export function ProductCard({ product }: { product: Product }) {
           Visit <ExternalLink className="h-3.5 w-3.5" />
         </a>
       )}
-    </div>
+    </Card>
   );
 }

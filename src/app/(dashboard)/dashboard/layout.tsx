@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { Shield, LogOut } from 'lucide-react';
+import { User, Shield, LogOut } from 'lucide-react';
 import { LogoutButton } from './logout-button';
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -13,19 +13,20 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const isAdmin = profile?.role === 'admin';
 
   return (
-    <div className="min-h-screen bg-surface-950 pt-24 pb-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <div className="relative pt-24 pb-20">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(99,102,241,0.1),_transparent,_transparent)]" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
           <aside className="space-y-1">
-            <div className="glass-card p-4 mb-4">
-              <p className="font-semibold font-display">{user.email}</p>
+            <div className="glass-card p-4">
+              <p className="font-semibold text-white">{user.email}</p>
               <p className="text-xs text-white/40">{isAdmin ? 'Admin' : 'User'}</p>
             </div>
-            <Link href="/dashboard" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-all duration-300">
-              Profile
+            <Link href="/dashboard" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-colors">
+              <User className="h-4 w-4" /> Profile
             </Link>
             {isAdmin && (
-              <Link href="/admin" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-all duration-300">
+              <Link href="/admin" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-colors">
                 <Shield className="h-4 w-4" /> Admin Panel
               </Link>
             )}
