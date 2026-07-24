@@ -1,55 +1,46 @@
 import type { Metadata } from 'next';
-export const metadata: Metadata = { title: 'Changelog', description: 'Every change and decision in Komputeks.' };
+
+export const metadata: Metadata = {
+  title: 'Changelog',
+  description: 'Every change, decision, and anti-pattern avoided.',
+};
 
 const entries = [
   {
     date: 'June 2025',
-    title: 'Komputeks Brand Website v2.0',
-    changes: [
-      'Complete UI/UX overhaul to match Erenexa design system with indigo/cyan brand, glass morphism, gradient text, Plus Jakarta Sans',
-      'Added floating AI Chatbot with Komputeks AI integration',
-      'Added connected accounts dashboard for GitHub, Vercel, Netlify, Cloudflare',
-      'Added project detail page with deployment wizard',
-      'Added AI providers admin management',
-      'Added user AI providers dashboard',
-      'Enhanced user dashboard with tabs for Analytics, Projects, AI, Deploy, Environments, Profile',
-      'Added bot blocking middleware for AI scrapers',
-      'Dark-only design matching brand identity',
-    ],
-    decisions: [
-      'Switched from amber/gold to indigo/cyan brand colors to match Erenexa design system',
-      'Removed light mode toggle since dark-only matches brand identity',
-      'Added glass morphism cards with bg-white/5 backdrop-blur-xl',
-      'Added gradient text effects from brand-400 through cyan to brand-400',
-      'Added Plus Jakarta Sans for display headings',
-      'Added floating AI chatbot for visitor engagement',
-      'Added deployment wizard for one-click project deployment',
-    ],
-  },
-  {
-    date: 'June 2025',
     title: 'Komputeks Brand Website v1.0',
     changes: [
-      'Initial launch with Next.js 15, TypeScript, Tailwind v4, Supabase',
-      'Landing page, About, Products, Contact, FAQ, Privacy, Terms, Docs',
-      'Auth with email/password and Google OAuth',
-      'Admin dashboard and User dashboard',
-      'PWA support and SEO optimization',
+      'Initial launch with Next.js 15 App Router, TypeScript, Tailwind CSS v4, Supabase.',
+      'Landing page with hero, products showcase, three pillars, email capture.',
+      'About page with founder story, monopoly, and competitive positioning.',
+      'Products page with category filtering and status badges.',
+      'Contact form with validation and Supabase persistence.',
+      'Auth with email/password and Google OAuth via Supabase.',
+      'Admin dashboard for content management.',
+      'PWA support with manifest and service worker.',
+      'SEO optimization with sitemap, robots.txt, JSON-LD, and meta tags.',
+      'Dark/light/system theme toggle.',
+      'UI overhaul matching Erenexa design system (glass cards, gradient text, surface-950 bg).',
     ],
     decisions: [
-      'Chose Next.js App Router over Pages Router',
-      'Used Supabase Auth over NextAuth',
-      'Defaulted to dark mode',
-      'Used amber/gold accent color',
+      'Chose Next.js App Router over Pages Router for Server Components.',
+      'Used Supabase for auth, database, and storage — free tier friendly.',
+      'Defaulted to dark mode to match the brand identity.',
+      'Adopted Erenexa UI system: indigo brand + cyan accent + surface slate + glass morphism.',
+      'Used Zod for all validation on both client and server.',
+      'No secrets in vercel.json — env vars set via Vercel API only.',
     ],
   },
 ];
 
 export default function ChangelogPage() {
   return (
-    <div className="pt-28 pb-20">
-      <div className="mx-auto max-w-3xl px-6">
-        <h1 className="text-4xl font-bold font-display">Changelog</h1>
+    <div className="relative overflow-hidden pt-28 pb-20">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/10 via-surface-950 to-surface-950" />
+      <div className="relative z-10 mx-auto max-w-3xl px-6">
+        <h1 className="text-4xl font-bold font-display tracking-tight">
+          <span className="gradient-text">Changelog</span>
+        </h1>
         <p className="mt-4 text-lg text-white/60">Every change, decision, and anti-pattern avoided.</p>
         <div className="mt-10 space-y-10">
           {entries.map((entry) => (

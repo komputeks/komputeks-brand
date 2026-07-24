@@ -8,16 +8,27 @@ const gains = [
 
 export function LandingGains() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section className="relative z-10 mx-auto max-w-7xl px-6 py-20">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold font-display">What You Gain</h2>
-        <p className="mt-3 text-white/60">They charge you for these, but we give you FREE.</p>
+        <h2 className="text-3xl font-bold font-display tracking-tight">
+          What You Gain
+        </h2>
+        <p className="mt-3 text-white/60">
+          They charge you for these, but we give you FREE.
+        </p>
       </div>
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {gains.map((gain) => (<div key={gain.title} className="glass-card p-6 hover:bg-white/10 transition-all duration-300"><h3 className="text-lg font-semibold font-display">{gain.title}</h3><p className="mt-2 text-sm text-white/60">{gain.description}</p></div>))}
+        {gains.map((gain) => (
+          <div key={gain.title} className="glass-card p-6 hover:bg-white/10 transition-all duration-300">
+            <h3 className="text-lg font-semibold font-display">{gain.title}</h3>
+            <p className="mt-2 text-sm text-white/60">{gain.description}</p>
+          </div>
+        ))}
       </div>
-      <div className="mt-12 rounded-2xl bg-gradient-to-r from-brand-900/30 to-cyan-900/30 border border-brand-500/20 p-8 text-center">
-        <p className="text-lg font-medium text-white">Take assured actions today with what you have. The momentum will follow.</p>
+      <div className="mt-12 glass-card p-8 text-center border-brand-500/20">
+        <p className="text-lg font-medium gradient-text">
+          Take assured actions today with what you have. The momentum will follow.
+        </p>
       </div>
     </section>
   );

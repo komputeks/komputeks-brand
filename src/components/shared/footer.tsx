@@ -2,9 +2,21 @@ import Link from 'next/link';
 import { Zap, Github, Twitter, Mail } from 'lucide-react';
 
 const footerLinks = {
-  Product: [{ href: '/products', label: 'All Products' }, { href: '/docs', label: 'Documentation' }, { href: '/faq', label: 'FAQ' }, { href: '/contact', label: 'Contact' }],
-  Company: [{ href: '/about', label: 'About' }, { href: '/docs/changelog', label: 'Changelog' }, { href: '/docs/roadmap', label: 'Roadmap' }],
-  Legal: [{ href: '/privacy', label: 'Privacy Policy' }, { href: '/terms', label: 'Terms of Service' }],
+  Product: [
+    { href: '/products', label: 'All Products' },
+    { href: '/docs', label: 'Documentation' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/contact', label: 'Contact' },
+  ],
+  Company: [
+    { href: '/about', label: 'About' },
+    { href: '/docs/changelog', label: 'Changelog' },
+    { href: '/docs/roadmap', label: 'Roadmap' },
+  ],
+  Legal: [
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms', label: 'Terms of Service' },
+  ],
 };
 
 const socialLinks = [
@@ -25,24 +37,48 @@ export function Footer() {
               </div>
               <span className="text-xl font-bold font-display">Komputeks</span>
             </Link>
-            <p className="mt-3 max-w-sm text-sm text-white/60">For people building anyway. The world&apos;s most trusted ecosystem for creators with more determination than resources.</p>
+            <p className="mt-3 max-w-sm text-sm text-white/60">
+              For people building anyway. The world&apos;s most trusted ecosystem for creators with more determination than resources.
+            </p>
             <div className="mt-4 flex gap-3">
               {socialLinks.map(({ href, icon: Icon, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors" aria-label={label}><Icon className="h-5 w-5 text-white/70" /></a>
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg p-2 text-white/50 transition-all duration-300 hover:bg-white/5 hover:text-white"
+                  aria-label={label}
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
               ))}
             </div>
           </div>
+
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-white font-display">{title}</h3>
-              <ul className="mt-3 space-y-2">
-                {links.map(({ href, label }) => (<li key={label}><Link href={href} className="text-sm text-white/60 hover:text-brand-400 transition-colors">{label}</Link></li>))}
+              <h3 className="text-sm font-semibold text-white mb-3">{title}</h3>
+              <ul className="space-y-2">
+                {links.map(({ href, label }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="text-sm text-white/60 transition-all duration-300 hover:text-brand-400"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
         </div>
+
         <div className="mt-10 border-t border-white/10 pt-6">
-          <p className="text-center text-sm text-white/40">© {new Date().getFullYear()} Komputeks. For people building anyway.</p>
+          <p className="text-center text-sm text-white/40">
+            © {new Date().getFullYear()} Komputeks. For people building anyway.
+          </p>
         </div>
       </div>
     </footer>

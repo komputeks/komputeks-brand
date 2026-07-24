@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils';
 
-interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> { variant?: 'default' | 'success' | 'warning' | 'error' | 'info' }
+interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
+}
 
 export function Badge({ className, variant = 'default', children, ...props }: BadgeProps) {
   const variants = {
@@ -10,5 +12,17 @@ export function Badge({ className, variant = 'default', children, ...props }: Ba
     error: 'bg-red-500/10 text-red-400 border-red-500/20',
     info: 'bg-brand-500/10 text-brand-400 border-brand-500/20',
   };
-  return <span className={cn('inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full border', variants[variant], className)} {...props}>{children}</span>;
+
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full border',
+        variants[variant],
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </span>
+  );
 }
